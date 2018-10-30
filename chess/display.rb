@@ -12,7 +12,12 @@ class Display
   def render
     # until board.valid_pos?
     # @cursor.cursor_pos.red
-    puts @board
+    @board.grid.each do |row|
+      row.each do |ele|
+        print ele.inspect + " "
+      end 
+      puts
+    end
     
   end
   

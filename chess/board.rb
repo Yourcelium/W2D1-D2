@@ -37,6 +37,10 @@ class Board
     self[start_pos] = NullPiece.new()
   end
   
+  def inspect
+    @grid
+  end
+  
   def valid_pos?
     
   end

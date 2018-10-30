@@ -19,7 +19,7 @@ end
 class NullPiece < Piece
   
   def inspect
-    return "o"
+    "o"
   end
   
 end
