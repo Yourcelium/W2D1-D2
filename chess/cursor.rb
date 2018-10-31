@@ -1,5 +1,5 @@
 require "io/console"
-
+require "byebug"
 KEYMAP = {
   " " => :space,
   "h" => :left,
@@ -40,6 +40,7 @@ class Cursor
   end
 
   def get_input
+    # debugger
     key = KEYMAP[read_char]
     handle_key(key)
   end
@@ -76,24 +77,26 @@ class Cursor
   end
 
   def handle_key(key)
+    # debugger
     case key
-    when [:return, :space].include?(key)
+    when :return, :space
       @cursor_pos
-    when key == :left
+    when :left
       update_pos([0,-1])
-    when key == :right
+    when :right
       update_pos([0,1])
-    when key == :up
+    when :up
       update_pos([-1,0])
-    when key == :down
+    when :down
       update_pos([1,0])
-    when key == :ctrl_c
+    when :ctrl_c
       Process.exit(0)
     end    
   end
   
 
   def update_pos(diff)
+    # debugger
     pos_row, pos_col = @cursor_pos.dup
     unless diff.first == 0
       pos_row = @cursor_pos[0] + diff.first 
@@ -102,6 +105,9 @@ class Cursor
     end
     if @board.valid_pos?([pos_row, pos_col])
       @cursor_pos = [pos_row, pos_col]
-    end    
+    end  
+    nil   
   end
+  
+  
 end
